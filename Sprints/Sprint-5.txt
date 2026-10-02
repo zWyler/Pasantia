@@ -1,0 +1,6 @@
+Meta del sprint 5 - Comunicaciones
+
+Objetivo del sprint 5:
+El sistema puede informar al estudiante sobre actividades y eventos importantes mediante notificaciones.
+
+PB-09 Sistema de notificaciones             🟡

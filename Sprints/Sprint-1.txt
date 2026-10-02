@@ -1,0 +1,11 @@
+Meta del sprint 1 - Gestion de usuarios
+
+Resultado del sprint 1:
+Que el estudiante logre registrarse, iniciar sesion y gestionar su perfil.
+
+PB-01 Registro e inicio de sesión           🔴
+PB-02 Gestión del perfil del estudiante     🟡
+
+Resultado: Que el estudiante logre registrarse, iniciar sesion y gestionar su perfil.
+
+Extra: Autenticación, contraseñas y sesiones

@@ -1,0 +1,9 @@
+Meta del sprint 3 - Organizacion academica
+
+Resultado del sprint 3:
+El estudiante puede consultar sus actividades mediante un calendario y encontrar tareas mediante búsqueda y filtros.
+
+PB-07 Calendario académico                  🟡
+PB-11 Búsqueda y filtrado                   🟢
+
+Extra: Validación de búsquedas y filtros

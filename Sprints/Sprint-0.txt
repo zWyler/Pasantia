@@ -1,0 +1,41 @@
+Sprint 0 - Planificacion
+
+Meta: Definir las bases funcionales, tecnicas y organizativas necesarias para iniciar el desarrollo de la aplicacion web
+
+👤 Caso de usuario — Estudiante
+
+Actor: Estudiante
+
+Situación:
+Un estudiante tiene varias materias y debe realizar diferentes tareas con fechas de entrega, prioridades y estados. 
+Actualmente, puede tener esta información distribuida en diferentes lugares, lo que dificulta llevar un control de sus actividades.
+
+Necesidad:
+Contar con un lugar donde pueda organizar y consultar fácilmente toda su información académica.
+
+Solución propuesta:
+StudyHub permitirá al estudiante registrar sus materias y tareas, establecer fechas de entrega y prioridades, consultar sus actividades 
+mediante un calendario, recibir notificaciones y visualizar su progreso académico.
+
+Resultado esperado:
+El estudiante puede organizar, consultar y dar seguimiento a sus actividades académicas desde una sola plataforma.
+
+
+=================================================================================================================================================
+
+Frontend:
+React
+JavaScript
+HTML
+CSS
+
+Backend:
+PHP
+Laravel
+
+Base de datos:
+MySQL
+
+Herramientas:
+Git
+GitHub

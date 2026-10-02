@@ -1,0 +1,11 @@
+Meta del sprint 2 - Gestion completa de tareas
+
+Resultado del sprint 2:
+El estudiante puede gestionar sus materias y actividades académicas, estableciendo su estado, fecha de entrega y prioridad.
+
+PB-03 Gestión de materias                   🔴
+PB-04 Creación y gestión de tareas          🔴
+PB-05 Estados de las tareas                 🟡
+PB-06 Fechas de entrega y prioridades       🔴
+
+Extra: Validación y autorización de materias/tareas

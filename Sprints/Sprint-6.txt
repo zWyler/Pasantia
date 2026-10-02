@@ -1,0 +1,11 @@
+Meta del sprint 6 - Responsividad y pruebas
+
+Objetivo del sprint 6:
+La plataforma está adaptada a diferentes dispositivos, permite personalización visual, valida los datos y ha sido probada.
+
+PB-12 Diseño responsive                     🔴
+PB-13 Modo oscuro                           🟢
+PB-14 Seguridad y validación de datos       🔴
+PB-15 Pruebas y corrección de errores       🔴
+
+Extra: Auditoría y pruebas de seguridad

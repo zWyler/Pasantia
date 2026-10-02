@@ -1,0 +1,29 @@
+Objetivo: Crear una pagina web para que estudiantes puedan registrar, organizar y planificar sus tareas y calificaciones
+
+               Product Backlog
+
+PB-01 Registro e inicio de sesión           🔴.
+PB-02 Gestión del perfil del estudiante     🟡.
+PB-03 Gestión de materias                   🔴..
+PB-04 Creación y gestión de tareas          🔴..
+PB-05 Estados de las tareas                 🟡..
+PB-06 Fechas de entrega y prioridades       🔴..
+PB-07 Calendario académico                  🟡...
+PB-08 Dashboard principal                   🔴....
+PB-09 Sistema de notificaciones             🟡.....
+PB-10 Estadísticas de rendimiento           🟡....
+PB-11 Búsqueda y filtrado                   🟢...
+PB-12 Diseño responsive                     🔴......
+PB-13 Modo oscuro                           🟢......
+PB-14 Seguridad y validación de datos       🔴......
+PB-15 Pruebas y corrección de errores       🔴......
+
+Prioridad de tarea
+🔴 | Alta
+🟡 | Media
+🟢 | Baja
+
+
+Fallos dentro del Backlog:
+Seguridad
+nortic A6 (No aplica)

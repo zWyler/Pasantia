@@ -1,0 +1,9 @@
+Meta del sprint 4 - Seguimiento personal
+
+Objetivo del sprint 4:
+El estudiante puede visualizar su actividad y rendimiento mediante un dashboard y estadísticas.
+
+PB-08 Dashboard principal                   🔴
+PB-10 Estadísticas de rendimiento           🟡
+
+Extra: Protección de datos y estadísticas
