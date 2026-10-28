@@ -1,11 +1,52 @@
-Meta del sprint 1 - Gestion de usuarios
+# Sprint 1 — Gestión de usuarios
 
-Resultado del sprint 1:
-Que el estudiante logre registrarse, iniciar sesion y gestionar su perfil.
+## Objetivo
 
-PB-01 Registro e inicio de sesión           🔴
-PB-02 Gestión del perfil del estudiante     🟡
+Permitir que los estudiantes se registren, inicien y cierren sesión, y gestionen su perfil de manera segura.
 
-Resultado: Que el estudiante logre registrarse, iniciar sesion y gestionar su perfil.
+## Product Backlog del sprint
 
-Extra: Autenticación, contraseñas y sesiones
+### PB-01 — Registro e inicio de sesión
+
+**Estado:** Funcionalidades principales verificadas.
+
+* Registro de usuarios.
+* Inicio y cierre de sesión.
+* Autenticación mediante tokens.
+* Recuperación y restablecimiento de contraseña por correo electrónico.
+* Bloqueo temporal tras tres intentos fallidos.
+* Bloqueo progresivo de 15, 30, 60, 120 y hasta 240 minutos.
+* Envío de alertas de seguridad por correo.
+* Reinicio de los contadores de seguridad tras restablecer la contraseña.
+
+### PB-02 — Gestión del perfil del estudiante
+
+**Estado:** Funcionalidades principales verificadas manualmente.
+
+* Actualización del nombre y correo electrónico.
+* Persistencia de los cambios después de recargar la página.
+* Protección de la ruta del perfil mediante autenticación.
+* Rechazo de solicitudes no autenticadas.
+
+## Pruebas realizadas
+
+* Registro de un usuario desde la interfaz.
+* Inicio de sesión.
+* Cierre de sesión y comprobación de que se requiere autenticación nuevamente.
+* Actualización del perfil y persistencia de los cambios.
+* Bloqueo por intentos fallidos.
+* Recepción de correos de alerta y recuperación.
+* Restablecimiento de contraseña y acceso posterior.
+* Verificación de los contadores de seguridad en la base de datos.
+* Pruebas automatizadas del backend: 4 pruebas aprobadas y 13 aserciones satisfactorias.
+
+## Pendientes antes del cierre definitivo
+
+* Ampliar las pruebas automatizadas de registro, perfil y cierre de sesión si aún no existen.
+* Revisar las validaciones de datos y el manejo de errores.
+* Confirmar que todos los criterios de aceptación del sprint están satisfechos.
+* Revisar la configuración del correo y del entorno de entrega.
+
+## Resultado
+
+Las funcionalidades principales de gestión de usuarios fueron implementadas y verificadas. Las pruebas automatizadas existentes finalizaron satisfactoriamente. El cierre definitivo del sprint queda sujeto a completar la revisión de los criterios de aceptación y los pendientes documentados.

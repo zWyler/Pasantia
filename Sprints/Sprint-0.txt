@@ -1,41 +1,136 @@
-Sprint 0 - Planificacion
+# SPRINT 0 — PLANIFICACIÓN
 
-Meta: Definir las bases funcionales, tecnicas y organizativas necesarias para iniciar el desarrollo de la aplicacion web
+## 1. Objetivo del Sprint
 
-👤 Caso de usuario — Estudiante
+Definir las bases funcionales, técnicas y organizativas necesarias para iniciar el desarrollo de StudyHub, estableciendo los requisitos iniciales, la arquitectura tecnológica, las herramientas de trabajo y la estructura del proyecto.
 
-Actor: Estudiante
+## 2. Caso de usuario — Estudiante
 
-Situación:
-Un estudiante tiene varias materias y debe realizar diferentes tareas con fechas de entrega, prioridades y estados. 
-Actualmente, puede tener esta información distribuida en diferentes lugares, lo que dificulta llevar un control de sus actividades.
+**Actor:** Estudiante.
 
-Necesidad:
+**Situación:**
+
+Un estudiante tiene varias materias y debe realizar diferentes tareas con fechas de entrega, prioridades y estados. Actualmente, puede tener esta información distribuida en diferentes lugares, lo que dificulta llevar un control de sus actividades.
+
+**Necesidad:**
+
 Contar con un lugar donde pueda organizar y consultar fácilmente toda su información académica.
 
-Solución propuesta:
-StudyHub permitirá al estudiante registrar sus materias y tareas, establecer fechas de entrega y prioridades, consultar sus actividades 
-mediante un calendario, recibir notificaciones y visualizar su progreso académico.
+**Solución propuesta:**
 
-Resultado esperado:
-El estudiante puede organizar, consultar y dar seguimiento a sus actividades académicas desde una sola plataforma.
+StudyHub permitirá al estudiante registrar sus materias y tareas, establecer fechas de entrega y prioridades, consultar sus actividades mediante un calendario, recibir notificaciones y visualizar su progreso académico.
 
+**Resultado esperado:**
 
-=================================================================================================================================================
+El estudiante podrá organizar, consultar y dar seguimiento a sus actividades académicas desde una sola plataforma.
 
-Frontend:
-React
-JavaScript
-HTML
-CSS
+## 3. Arquitectura tecnológica
 
-Backend:
-PHP
-Laravel
+### Frontend
 
-Base de datos:
-MySQL
+* React 19: desarrollo de la interfaz de usuario.
+* JavaScript: lenguaje principal del frontend.
+* HTML: estructura de las páginas.
+* CSS: estilos y diseño visual.
+* React Router DOM 7: navegación entre páginas.
+* Vite 8: servidor de desarrollo y compilación.
+* ESLint 10: análisis estático del código.
 
-Herramientas:
-Git
-GitHub
+### Backend
+
+* PHP 8.2.12: lenguaje de programación del servidor.
+* Laravel 12.69.3: framework para desarrollar la API.
+* Laravel Sanctum: autenticación mediante tokens.
+
+### Base de datos
+
+* MariaDB 10.4.32, administrada mediante el entorno XAMPP.
+* Base de datos del proyecto: `StudyHub`.
+
+La estructura incluye tablas para usuarios, tokens de autenticación, recuperación de contraseñas, sesiones, caché y tareas en segundo plano.
+
+### Herramientas de desarrollo
+
+* Visual Studio Code: edición del código.
+* XAMPP: entorno local para la base de datos.
+* Composer: administración de dependencias de PHP.
+* Node.js y npm: entorno de ejecución y administración de dependencias del frontend.
+* Git: control de versiones local.
+* GitHub: pendiente de configurar como repositorio remoto.
+
+## 4. Estructura del proyecto
+
+El proyecto se organiza de la siguiente manera:
+
+* `backend/`: aplicación Laravel, API, autenticación, modelos, migraciones y pruebas.
+* `frontend/`: aplicación React, componentes, estilos y navegación.
+* `Sprints/`: documentación de los objetivos y avances de cada sprint.
+* `.gitignore`: archivos y carpetas excluidos del control de versiones.
+
+## 5. Configuración inicial de la base de datos
+
+Se verificó la conexión entre Laravel y MariaDB mediante PDO.
+
+También se confirmó la existencia de las tablas principales del sistema, entre ellas:
+
+* `users`: usuarios y datos de seguridad.
+* `password_reset_tokens`: recuperación de contraseñas.
+* `personal_access_tokens`: tokens de autenticación.
+* `migrations`: registro de las migraciones ejecutadas.
+* `sessions`: almacenamiento de sesiones.
+* `cache` y `cache_locks`: almacenamiento de caché.
+* `jobs`, `job_batches` y `failed_jobs`: administración de tareas en segundo plano.
+
+La tabla `users` contiene los campos necesarios para el registro, el perfil y el control progresivo de intentos fallidos de inicio de sesión.
+
+## 6. Verificaciones técnicas
+
+Durante la revisión de las bases del proyecto se realizaron las siguientes comprobaciones:
+
+| Verificación                              | Resultado                                            |
+| ----------------------------------------- | ---------------------------------------------------- |
+| Estructura del proyecto                   | Correcta                                             |
+| Conexión de Laravel con MariaDB           | Correcta                                             |
+| Tablas de la base de datos                | Verificadas                                          |
+| Campos de seguridad de los usuarios       | Verificados                                          |
+| Compilación del frontend con Vite         | Correcta                                             |
+| Análisis estático del frontend con ESLint | Sin errores                                          |
+| Migraciones de Laravel                    | Ejecutadas según el estado de migraciones consultado |
+| Repositorio Git local                     | Inicializado                                         |
+| Repositorio remoto de GitHub              | Pendiente de configurar                              |
+
+**Observación:** el comando `php artisan db:show` presentó un error al consultar `performance_schema.session_status`. Sin embargo, se confirmó que Laravel puede conectarse a MariaDB y consultar las tablas. Este problema de diagnóstico queda pendiente de revisar si se necesita utilizar dicho comando.
+
+## 7. Organización del desarrollo
+
+El proyecto se desarrolla mediante la metodología Scrum, organizando las funcionalidades en sprints y utilizando un Product Backlog para establecer las prioridades.
+
+Las funcionalidades se distribuyen en módulos como:
+
+* Gestión de usuarios y perfiles.
+* Gestión de materias y tareas.
+* Fechas de entrega, prioridades y estados.
+* Calendario académico.
+* Búsqueda y filtros.
+* Panel de control y estadísticas.
+* Notificaciones.
+* Diseño adaptable y modo oscuro.
+* Seguridad, validaciones y pruebas.
+
+La seguridad se considera un aspecto transversal que debe revisarse durante el desarrollo de las funcionalidades.
+
+## 8. Pendientes del Sprint 0
+
+Antes de considerar cerrada esta etapa, quedan por completar o confirmar los siguientes aspectos:
+
+1. Configurar el repositorio remoto de GitHub, si se utilizará para el proyecto.
+2. Consolidar y revisar la documentación inicial del proyecto.
+3. Confirmar los criterios de aceptación y las prioridades del Product Backlog.
+4. Registrar formalmente los resultados de las verificaciones técnicas.
+5. Confirmar que la estructura y la configuración inicial cumplen los requisitos establecidos para comenzar los siguientes sprints.
+
+## 9. Resultado del Sprint 0
+
+Se establecieron las bases funcionales y técnicas de StudyHub, se definió la arquitectura del frontend y el backend, se verificó la conexión con la base de datos y se comprobó que el frontend compila correctamente y no presenta errores de ESLint.
+
+La documentación y los pendientes organizativos deben revisarse antes de declarar formalmente cerrado el Sprint 0.

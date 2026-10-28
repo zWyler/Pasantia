@@ -1,0 +1,210 @@
+.dashboard-page {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 24px;
+background: #f5f3ff;
+font-family: Arial, sans-serif;
+box-sizing: border-box;
+}
+
+.dashboard-card {
+width: 100%;
+max-width: 480px;
+padding: 40px 32px;
+background: #ffffff;
+border-radius: 20px;
+box-shadow: 0 12px 35px rgba(76, 29, 149, 0.10);
+text-align: center;
+box-sizing: border-box;
+}
+
+.dashboard-logo {
+margin: 0 0 32px;
+color: #292044;
+font-size: 32px;
+font-weight: 800;
+}
+
+.dashboard-logo span {
+color: #7c3aed;
+}
+
+.dashboard-card h2 {
+margin-bottom: 12px;
+color: #292044;
+font-size: 25px;
+}
+
+.dashboard-card p {
+color: #6b7280;
+line-height: 1.6;
+}
+
+.dashboard-email {
+margin: 18px 0 28px;
+font-weight: 600;
+overflow-wrap: anywhere;
+}
+
+.dashboard-logout {
+width: 100%;
+padding: 14px 20px;
+border: none;
+border-radius: 10px;
+background: #7c3aed;
+color: #ffffff;
+font-size: 15px;
+font-weight: 700;
+cursor: pointer;
+transition: background 0.2s ease;
+margin-top: 12px;
+}
+
+.dashboard-logout:hover {
+    background-color: #6d28d9;
+    transform: translateY(-1px);
+}
+
+.dashboard-logout:active {
+    transform: translateY(0);
+}
+
+.dashboard-logout:focus-visible {
+    outline: 2px solid #6c4cf1;
+    outline-offset: 3px;
+}
+
+.btn-editar-perfil {
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #7c3aed;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-editar-perfil:hover {
+    background-color: #6d28d9;
+    transform: translateY(-1px);
+}
+
+.btn-editar-perfil:active {
+    transform: translateY(0);
+}
+
+.btn-editar-perfil:focus-visible {
+    outline: 2px solid #6c4cf1;
+    outline-offset: 3px;
+}
+
+.dashboard-copyright {
+margin-top: 24px;
+color: #8b8799;
+font-size: 13px;
+text-align: center;
+}
+
+/* Formulario de edición del perfil */
+.form-editar-perfil {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 24px;
+    text-align: left;
+}
+
+.form-editar-perfil > div:not(.acciones-editar-perfil) {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-editar-perfil label {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-editar-perfil input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #1f2937;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-editar-perfil input:focus {
+    border-color: #6c4cf1;
+    box-shadow: 0 0 0 3px rgba(108, 76, 241, 0.15);
+}
+
+.acciones-editar-perfil {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.acciones-editar-perfil button {
+    flex: 1;
+    min-width: 130px;
+    padding: 11px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-guardar-perfil {
+    background-color: #6c4cf1;
+    color: #ffffff;
+}
+
+.btn-guardar-perfil:hover:not(:disabled) {
+    background-color: #5838d8;
+    transform: translateY(-1px);
+}
+
+.btn-cancelar-perfil {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+.btn-cancelar-perfil:hover:not(:disabled) {
+    background-color: #d1d5db;
+}
+
+.acciones-editar-perfil button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.acciones-editar-perfil button:focus-visible {
+    outline: 2px solid #6c4cf1;
+    outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+.dashboard-card {
+padding: 32px 22px;
+}
+
+
+.dashboard-card h2 {
+    font-size: 22px;
+}
+}
