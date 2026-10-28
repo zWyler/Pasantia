@@ -1,9 +1,8 @@
 import { useState } from 'react';
+import { apiRequest } from '../api';
 import './Dashboard.css';
 
-const API_URL = 'http://127.0.0.1:8000/api';
-
-function Dashboard({ usuario, cerrarSesion, actualizarUsuario }) {
+function Dashboard({ usuario, actualizarUsuario }) {
 const [editando, setEditando] = useState(false);
 const [nombre, setNombre] = useState(usuario?.name || '');
 const [correo, setCorreo] = useState(usuario?.email || '');
@@ -20,35 +19,13 @@ const guardarPerfil = async (e) => {
     setError('');
 
     try {
-        const token = localStorage.getItem('token');
-
-        const respuesta = await fetch(`${API_URL}/profile`, {
+        const datos = await apiRequest('/profile', {
             method: 'PUT',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({
+            body: {
                 name: nombre.trim(),
                 email: correo.trim(),
-            }),
+            },
         });
-
-        const datos = await respuesta.json();
-
-        if (!respuesta.ok) {
-            if (respuesta.status === 422 && datos.errors) {
-                const errores = Object.values(datos.errors).flat();
-                throw new Error(errores.join(' '));
-            }
-
-            if (respuesta.status === 401) {
-                throw new Error('Tu sesión ha expirado. Inicia sesión nuevamente.');
-            }
-
-            throw new Error(datos.message || 'No se pudo actualizar el perfil.');
-        }
 
         actualizarUsuario(datos.user);
         setNombre(datos.user.name);
@@ -56,7 +33,9 @@ const guardarPerfil = async (e) => {
         setEditando(false);
         setMensaje('Perfil actualizado correctamente.');
     } catch (err) {
-        setError(err.message || 'Ocurrió un error al actualizar el perfil.');
+        setError(err.status === 401
+            ? 'Tu sesión ha expirado. Inicia sesión nuevamente.'
+            : err.message || 'Ocurrió un error al actualizar el perfil.');
     } finally {
         setGuardando(false);
     }
@@ -71,15 +50,9 @@ const cancelarEdicion = () => {
 };
 
 return (
-    <main className="dashboard-page">
-        <section className="dashboard-card">
-            <h1 className="dashboard-logo">
-                Study<span>Hub</span>
-            </h1>
-
-            <h2>¡Bienvenido, {usuario?.name || 'estudiante'}!</h2>
-
-            <p>Este es tu perfil de estudiante.</p>
+        <section className="dashboard-card profile-card" aria-labelledby="profile-heading">
+            <h2 id="profile-heading">Perfil del estudiante</h2>
+            <p className="profile-intro">Consulta y actualiza los datos de tu cuenta.</p>
 
             {editando ? (
                 <form className="form-editar-perfil" onSubmit={guardarPerfil}>
@@ -149,19 +122,7 @@ return (
                 </>
             )}
 
-            <button
-                type="button"
-                className="dashboard-logout"
-                onClick={cerrarSesion}
-            >
-                Cerrar sesión
-            </button>
         </section>
-
-        <p className="dashboard-copyright">
-            StudyHub — Perfil del estudiante
-        </p>
-    </main>
 );
 }
 

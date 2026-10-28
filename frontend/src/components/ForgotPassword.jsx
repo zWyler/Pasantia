@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { apiRequest } from '../api';
+import { textoError } from '../utils/academic';
 import './ForgotPassword.css';
 
 function ForgotPassword() {
@@ -14,27 +17,10 @@ function ForgotPassword() {
     setCargando(true);
 
     try {
-      const respuesta = await fetch(
-        'http://127.0.0.1:8000/api/forgot-password',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify({ email }),
-        }
-      );
-
-      const datos = await respuesta.json();
-
-      if (!respuesta.ok) {
-        setTipoMensaje('error');
-        setMensaje(
-          datos.message || 'No se pudo procesar la solicitud.'
-        );
-        return;
-      }
+      const datos = await apiRequest('/forgot-password', {
+        method: 'POST',
+        body: { email },
+      });
 
       setTipoMensaje('exito');
       setMensaje(
@@ -42,9 +28,8 @@ function ForgotPassword() {
           'Si el correo está registrado, recibirás un enlace de recuperación.'
       );
     } catch (error) {
-      console.error(error);
       setTipoMensaje('error');
-      setMensaje('No se pudo conectar con el servidor.');
+      setMensaje(textoError(error));
     } finally {
       setCargando(false);
     }
@@ -53,10 +38,10 @@ function ForgotPassword() {
   return (
     <main className="forgot-page">
       <section className="forgot-card">
-        <a href="/" className="forgot-back" aria-label="Volver al inicio de sesión">
+        <Link to="/" className="forgot-back" aria-label="Volver al inicio de sesión">
           <span aria-hidden="true">←</span>
           Volver al inicio
-        </a>
+        </Link>
 
         <div className="forgot-icon" aria-hidden="true">
           <svg
@@ -154,7 +139,7 @@ function ForgotPassword() {
         </div>
 
         <div className="forgot-footer">
-          ¿Ya recuerdas tu contraseña? <a href="/">Inicia sesión</a>
+          ¿Ya recuerdas tu contraseña? <Link to="/">Inicia sesión</Link>
         </div>
       </section>
 

@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { apiRequest } from '../api';
+import { textoError } from '../utils/academic';
 import './ResetPassword.css';
 
 function ResetPassword() {
+    const navigate = useNavigate();
     const parametros = new URLSearchParams(window.location.search);
     const token = parametros.get('token') || '';
     const emailInicial = parametros.get('email') || '';
@@ -25,11 +29,11 @@ function ResetPassword() {
         }
 
         const temporizador = setTimeout(() => {
-            window.location.href = '/';
+            navigate('/', { replace: true });
         }, 3000);
 
         return () => clearTimeout(temporizador);
-    }, [restablecimientoExitoso]);
+    }, [navigate, restablecimientoExitoso]);
 
     const restablecerPassword = async (e) => {
         e.preventDefault();
@@ -62,40 +66,15 @@ function ResetPassword() {
         setCargando(true);
 
         try {
-            const respuesta = await fetch(
-                'http://127.0.0.1:8000/api/reset-password',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                    },
-                    body: JSON.stringify({
-                        email: email.trim(),
-                        token,
-                        password,
-                        password_confirmation: passwordConfirmation,
-                    }),
-                }
-            );
-
-            const datos = await respuesta.json();
-
-            if (!respuesta.ok) {
-                let mensajeError =
-                    datos.message ||
-                    'No se pudo restablecer la contraseña.';
-
-                if (datos.errors) {
-                    mensajeError = Object.values(datos.errors)
-                        .flat()
-                        .join(' ');
-                }
-
-                setMensaje(mensajeError);
-                setTipoMensaje('error');
-                return;
-            }
+            const datos = await apiRequest('/reset-password', {
+                method: 'POST',
+                body: {
+                    email: email.trim(),
+                    token,
+                    password,
+                    password_confirmation: passwordConfirmation,
+                },
+            });
 
             setMensaje(
                 datos.message ||
@@ -107,14 +86,7 @@ function ResetPassword() {
             setPassword('');
             setPasswordConfirmation('');
         } catch (error) {
-            console.error(
-                'Error al restablecer la contraseña:',
-                error
-            );
-
-            setMensaje(
-                'No se pudo conectar con el servidor. Inténtalo nuevamente.'
-            );
+            setMensaje(textoError(error));
             setTipoMensaje('error');
         } finally {
             setCargando(false);
@@ -171,7 +143,7 @@ function ResetPassword() {
                 {!restablecimientoExitoso && (
                     <form onSubmit={restablecerPassword}>
                         <div className="reset-field">
-
+                            <label htmlFor="reset-email">Correo electrónico</label>
                             <input
                                 id="reset-email"
                                 type="email"
@@ -186,7 +158,7 @@ function ResetPassword() {
                         </div>
 
                         <div className="reset-field">
-
+                            <label htmlFor="reset-password">Nueva contraseña</label>
 
                             <div className="reset-password-input">
                                 <input
@@ -226,13 +198,11 @@ function ResetPassword() {
                                 </button>
                             </div>
 
-                            <p className="reset-hint">
-
-                            </p>
+                            <p className="reset-hint">Usa al menos 8 caracteres.</p>
                         </div>
 
                         <div className="reset-field">
-
+                            <label htmlFor="reset-confirm-password">Confirmar nueva contraseña</label>
                             <div className="reset-password-input">
                                 <input
                                     id="reset-confirm-password"
@@ -330,15 +300,15 @@ function ResetPassword() {
                             segundos...
                         </p>
 
-                        <a className="reset-return-link" href="/">
+                        <Link className="reset-return-link" to="/">
                             Ir al inicio de sesión ahora
-                        </a>
+                        </Link>
                     </div>
                 )}
 
                 {!restablecimientoExitoso && (
                     <footer className="reset-footer">
-                        <a href="/">← Volver al inicio de sesión</a>
+                        <Link to="/">← Volver al inicio de sesión</Link>
                     </footer>
                 )}
             </section>

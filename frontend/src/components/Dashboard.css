@@ -5,7 +5,7 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 padding: 24px;
-background: #f5f3ff;
+background: var(--accent-soft);
 font-family: Arial, sans-serif;
 box-sizing: border-box;
 }
@@ -14,32 +14,53 @@ box-sizing: border-box;
 width: 100%;
 max-width: 480px;
 padding: 40px 32px;
-background: #ffffff;
+background: var(--surface);
 border-radius: 20px;
 box-shadow: 0 12px 35px rgba(76, 29, 149, 0.10);
 text-align: center;
 box-sizing: border-box;
 }
 
+.profile-card {
+    width: auto;
+    max-width: none;
+    padding: 19px;
+    border: 1px solid var(--accent-border);
+    border-radius: 13px;
+    box-shadow: none;
+    text-align: left;
+}
+
+.profile-card h2 {
+    margin: 0 0 5px;
+    font-size: 16px;
+    font-weight: 750;
+}
+
+.profile-card .profile-intro {
+    margin-bottom: 14px;
+    font-size: 11px;
+}
+
 .dashboard-logo {
 margin: 0 0 32px;
-color: #292044;
+color: var(--accent-text);
 font-size: 32px;
 font-weight: 800;
 }
 
 .dashboard-logo span {
-color: #7c3aed;
+color: var(--accent-text);
 }
 
 .dashboard-card h2 {
 margin-bottom: 12px;
-color: #292044;
+color: var(--accent-text);
 font-size: 25px;
 }
 
 .dashboard-card p {
-color: #6b7280;
+color: var(--text-muted);
 line-height: 1.6;
 }
 
@@ -54,7 +75,7 @@ width: 100%;
 padding: 14px 20px;
 border: none;
 border-radius: 10px;
-background: #7c3aed;
+background: var(--accent);
 color: #ffffff;
 font-size: 15px;
 font-weight: 700;
@@ -64,7 +85,7 @@ margin-top: 12px;
 }
 
 .dashboard-logout:hover {
-    background-color: #6d28d9;
+    background-color: var(--accent);
     transform: translateY(-1px);
 }
 
@@ -82,7 +103,7 @@ margin-top: 12px;
     padding: 14px 20px;
     border: none;
     border-radius: 10px;
-    background: #7c3aed;
+    background: var(--accent);
     color: #ffffff;
     font-size: 15px;
     font-weight: 700;
@@ -91,7 +112,7 @@ margin-top: 12px;
 }
 
 .btn-editar-perfil:hover {
-    background-color: #6d28d9;
+    background-color: var(--accent);
     transform: translateY(-1px);
 }
 
@@ -106,7 +127,7 @@ margin-top: 12px;
 
 .dashboard-copyright {
 margin-top: 24px;
-color: #8b8799;
+color: var(--text-muted);
 font-size: 13px;
 text-align: center;
 }
@@ -127,7 +148,7 @@ text-align: center;
 }
 
 .form-editar-perfil label {
-    color: #374151;
+    color: var(--text);
     font-size: 14px;
     font-weight: 600;
 }
@@ -136,17 +157,17 @@ text-align: center;
     width: 100%;
     box-sizing: border-box;
     padding: 12px 14px;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--border);
     border-radius: 8px;
-    background-color: #ffffff;
-    color: #1f2937;
+    background-color: var(--surface);
+    color: var(--info-text);
     font-size: 14px;
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-editar-perfil input:focus {
-    border-color: #6c4cf1;
+    border-color: var(--accent-border);
     box-shadow: 0 0 0 3px rgba(108, 76, 241, 0.15);
 }
 
@@ -170,22 +191,22 @@ text-align: center;
 }
 
 .btn-guardar-perfil {
-    background-color: #6c4cf1;
+    background-color: var(--accent);
     color: #ffffff;
 }
 
 .btn-guardar-perfil:hover:not(:disabled) {
-    background-color: #5838d8;
+    background-color: var(--accent);
     transform: translateY(-1px);
 }
 
 .btn-cancelar-perfil {
-    background-color: #e5e7eb;
-    color: #374151;
+    background-color: var(--surface-soft);
+    color: var(--text);
 }
 
 .btn-cancelar-perfil:hover:not(:disabled) {
-    background-color: #d1d5db;
+    background-color: var(--surface-soft);
 }
 
 .acciones-editar-perfil button:disabled {

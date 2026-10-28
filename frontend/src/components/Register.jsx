@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { apiRequest } from '../api';
+import { textoError } from '../utils/academic';
 import './Register.css';
 
 function Register() {
@@ -35,38 +38,14 @@ function Register() {
         setCargando(true);
 
         try {
-            const respuesta = await fetch(
-                'http://127.0.0.1:8000/api/register',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                    },
-                    body: JSON.stringify({
-                        name: nombre.trim(),
-                        email: email.trim(),
-                        password: password,
-                    }),
-                }
-            );
-
-            const datos = await respuesta.json();
-
-            if (!respuesta.ok) {
-                let mensajeError =
-                    datos.message || 'No se pudo crear la cuenta.';
-
-                if (datos.errors) {
-                    mensajeError = Object.values(datos.errors)
-                        .flat()
-                        .join(' ');
-                }
-
-                setMensaje(mensajeError);
-                setTipoMensaje('error');
-                return;
-            }
+            const datos = await apiRequest('/register', {
+                method: 'POST',
+                body: {
+                    name: nombre.trim(),
+                    email: email.trim(),
+                    password,
+                },
+            });
 
             setMensaje(
                 datos.message || '¡Tu cuenta se ha creado correctamente!'
@@ -78,11 +57,7 @@ function Register() {
             setPassword('');
             setConfirmarPassword('');
         } catch (error) {
-            console.error('Error al registrar usuario:', error);
-
-            setMensaje(
-                'No se pudo conectar con el servidor. Inténtalo nuevamente.'
-            );
+            setMensaje(textoError(error));
             setTipoMensaje('error');
         } finally {
             setCargando(false);
@@ -133,6 +108,7 @@ function Register() {
                 <form onSubmit={registrarUsuario}>
                     <div className="register-field">
                         <label htmlFor="register-name">
+                            Nombre
                         </label>
 
                         <input
@@ -149,7 +125,7 @@ function Register() {
 
                     <div className="register-field">
                         <label htmlFor="register-email">
-
+                            Correo electrónico
                         </label>
 
                         <input
@@ -166,7 +142,7 @@ function Register() {
 
                     <div className="register-field">
                         <label htmlFor="register-password">
-
+                            Contraseña
                         </label>
 
                         <div className="register-password-input">
@@ -204,7 +180,7 @@ function Register() {
 
                     <div className="register-field">
                         <label htmlFor="register-confirm-password">
-
+                            Confirmar contraseña
                         </label>
 
                         <div className="register-password-input">
@@ -273,7 +249,7 @@ function Register() {
                 <footer className="register-footer">
                     <p>
                         ¿Ya tienes una cuenta?{' '}
-                        <a href="/">Inicia sesión</a>
+                        <Link to="/">Inicia sesión</Link>
                     </p>
                 </footer>
             </section>

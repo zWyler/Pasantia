@@ -25,7 +25,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "exclude-from-classmap": [
+            "/app/Http/Controllers/*.backup.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

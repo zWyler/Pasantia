@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { apiRequest } from '../api';
+import { textoError } from '../utils/academic';
 import './Login.css';
 
 function Login({ alIniciarSesion }) {
@@ -18,25 +21,10 @@ const iniciarSesion = async (e) => {
     setCargando(true);
 
     try {
-        const respuesta = await fetch(
-            'http://127.0.0.1:8000/api/login',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-            }
-        );
-
-        const datos = await respuesta.json();
-
-        if (!respuesta.ok) {
-            setMensaje(datos.message || 'No se pudo iniciar sesión.');
-            setTipoMensaje('error');
-            return;
-        }
+        const datos = await apiRequest('/login', {
+            method: 'POST',
+            body: { email, password },
+        });
 
        localStorage.setItem('token', datos.token);
 
@@ -45,8 +33,7 @@ if (datos.user) {
     alIniciarSesion(datos.user);
 };
     } catch (error) {
-        console.error(error);
-        setMensaje('No se pudo conectar con el servidor.');
+        setMensaje(textoError(error));
         setTipoMensaje('error');
     } finally {
         setCargando(false);
@@ -112,9 +99,9 @@ return (
 
                     <div className="password-label">
 
-                        <a href="/forgot-password">
+                        <Link to="/forgot-password">
                             ¿Olvidaste tu contraseña?
-                        </a>
+                        </Link>
                     </div>
 
                         <button
@@ -156,7 +143,7 @@ return (
             <footer className="login-footer">
                 <p>
                     ¿Todavía no tienes una cuenta?{' '}
-                    <a href="/register">Crear cuenta</a>
+                    <Link to="/register">Crear cuenta</Link>
                 </p>
             </footer>
         </section>

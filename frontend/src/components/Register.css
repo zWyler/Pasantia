@@ -11,8 +11,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background:
-        radial-gradient(
+    background: radial-gradient(
             circle at 8% 12%,
             rgba(139, 92, 246, 0.10),
             transparent 32%
@@ -22,9 +21,9 @@
             rgba(99, 102, 241, 0.08),
             transparent 32%
         ),
-        #f8f7fc;
+        var(--accent-soft);
     font-family: Inter, "Segoe UI", Arial, sans-serif;
-    color: #29243d;
+    color: var(--accent-text);
     box-sizing: border-box;
 }
 
@@ -44,8 +43,8 @@
     max-width: 465px;
     padding: 36px 40px 30px;
     overflow: hidden;
-    background: #ffffff;
-    border: 1px solid #eeebf5;
+    background: var(--surface);
+    border: 1px solid var(--accent-border);
     border-radius: 22px;
     box-shadow:
         0 24px 70px rgba(44, 31, 86, 0.07),
@@ -60,7 +59,7 @@
     left: 0;
     width: 100%;
     height: 4px;
-    background: linear-gradient(90deg, #7654e8, #a78bfa, #c4b5fd);
+    background: linear-gradient(90deg, var(--accent), var(--accent-soft), var(--accent-soft));
 }
 
 @keyframes registerAppear {
@@ -93,9 +92,9 @@
     width: 54px;
     height: 54px;
     margin-bottom: 12px;
-    color: #7654e8;
-    background: #f2edff;
-    border: 1px solid #e8dfff;
+    color: var(--accent-text);
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-border);
     border-radius: 16px;
 }
 
@@ -106,7 +105,7 @@
 
 .register-logo {
     margin: 0;
-    color: #29243d;
+    color: var(--accent-text);
     font-size: 32px;
     font-weight: 800;
     letter-spacing: -1.5px;
@@ -114,12 +113,12 @@
 }
 
 .register-logo span {
-    color: #7654e8;
+    color: var(--accent-text);
 }
 
 .register-slogan {
     margin: 7px 0 0;
-    color: #8d879f;
+    color: var(--text-muted);
     font-size: 12px;
     line-height: 1.5;
 }
@@ -134,7 +133,7 @@
 
 .register-eyebrow {
     margin: 0 0 8px;
-    color: #7654e8;
+    color: var(--accent-text);
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 1.4px;
@@ -142,7 +141,7 @@
 
 .register-intro h2 {
     margin: 0 0 8px;
-    color: #29243d;
+    color: var(--accent-text);
     font-size: 25px;
     font-weight: 750;
     letter-spacing: -0.8px;
@@ -151,7 +150,7 @@
 
 .register-description {
     margin: 0;
-    color: #858096;
+    color: var(--text-muted);
     font-size: 13px;
     line-height: 1.7;
 }
@@ -167,7 +166,7 @@
 .register-field label {
     display: block;
     margin-bottom: 8px;
-    color: #38334c;
+    color: var(--text);
     font-size: 13px;
     font-weight: 650;
 }
@@ -178,11 +177,11 @@
     min-width: 0;
     height: 47px;
     padding: 0 13px;
-    border: 1px solid #e5e1ee;
+    border: 1px solid var(--accent-border);
     border-radius: 10px;
     outline: none;
-    background: #fdfcff;
-    color: #29243d;
+    background: var(--accent-soft);
+    color: var(--accent-text);
     font-family: inherit;
     font-size: 14px;
     transition:
@@ -192,16 +191,16 @@
 }
 
 .register-field input::placeholder {
-    color: #aaa5b8;
+    color: var(--text-muted);
 }
 
 .register-field input:hover {
-    border-color: #d1c9e5;
+    border-color: var(--accent-border);
 }
 
 .register-field input:focus {
-    border-color: #8969ef;
-    background: #ffffff;
+    border-color: var(--accent-border);
+    background: var(--surface);
     box-shadow: 0 0 0 4px rgba(118, 84, 232, 0.11);
 }
 
@@ -225,7 +224,7 @@
     padding: 8px 0;
     border: none;
     background: transparent;
-    color: #7654e8;
+    color: var(--accent-text);
     font-family: inherit;
     font-size: 12px;
     font-weight: 700;
@@ -233,7 +232,7 @@
 }
 
 .register-toggle-password:hover {
-    color: #5836cb;
+    color: var(--accent-text);
 }
 
 .register-toggle-password:focus-visible {
@@ -244,7 +243,7 @@
 
 .register-hint {
     margin: 7px 0 0;
-    color: #9690a7;
+    color: var(--text-muted);
     font-size: 11px;
     line-height: 1.5;
 }
@@ -295,25 +294,25 @@
 }
 
 .register-alert.error {
-    background: #fff2f1;
-    color: #b42318;
-    border-color: #ffd8d5;
+    background: var(--danger-soft);
+    color: var(--danger-text);
+    border-color: var(--danger-border);
 }
 
 .register-alert.error .register-alert-icon {
-    background: #fecdca;
-    color: #912018;
+    background: var(--danger-soft);
+    color: var(--danger-text);
 }
 
 .register-alert.exito {
-    background: #ecfdf3;
-    color: #067647;
-    border-color: #abefc6;
+    background: var(--success-soft);
+    color: var(--success-text);
+    border-color: var(--success-border);
 }
 
 .register-alert.exito .register-alert-icon {
-    background: #abefc6;
-    color: #05603a;
+    background: var(--success-soft);
+    color: var(--success-text);
 }
 
 /* ========================================
@@ -330,7 +329,7 @@
     padding: 12px 18px;
     border: none;
     border-radius: 10px;
-    background: linear-gradient(135deg, #8060eb, #7049df);
+    background: linear-gradient(135deg, var(--accent), var(--accent));
     color: #ffffff;
     font-family: inherit;
     font-size: 14px;
@@ -344,7 +343,7 @@
 }
 
 .register-button:hover:not(:disabled) {
-    background: linear-gradient(135deg, #7552e5, #623bd0);
+    background: linear-gradient(135deg, var(--accent), var(--accent));
     box-shadow: 0 8px 20px rgba(118, 84, 232, 0.24);
     transform: translateY(-1px);
 }
@@ -371,19 +370,19 @@
 .register-footer {
     margin-top: 23px;
     padding-top: 20px;
-    border-top: 1px solid #f0edf5;
+    border-top: 1px solid var(--accent-border);
     text-align: center;
 }
 
 .register-footer p {
     margin: 0;
-    color: #858196;
+    color: var(--text-muted);
     font-size: 12px;
     line-height: 1.7;
 }
 
 .register-footer a {
-    color: #7654e8;
+    color: var(--accent-text);
     font-size: 12px;
     font-weight: 700;
     text-decoration: none;
@@ -391,7 +390,7 @@
 }
 
 .register-footer a:hover {
-    color: #5836cb;
+    color: var(--accent-text);
     text-decoration: underline;
 }
 
@@ -402,7 +401,7 @@
 .register-copyright {
     margin: 20px 0 0;
     text-align: center;
-    color: #a09bae;
+    color: var(--text-muted);
     font-size: 11px;
     line-height: 1.6;
 }

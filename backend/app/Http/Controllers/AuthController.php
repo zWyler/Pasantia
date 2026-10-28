@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
@@ -17,8 +16,8 @@ class AuthController extends Controller
     {
         $datos = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => ['required', 'string', new SecurePassword()],
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => ['required', 'string', 'max:255', new SecurePassword()],
         ]);
 
         $usuario = User::create([
@@ -36,8 +35,8 @@ class AuthController extends Controller
     public function login(Request $request)
 {
     $datos = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required|string',
+        'email' => 'required|email|max:255',
+        'password' => 'required|string|max:255',
     ]);
 
 $usuario = User::where('email', $datos['email'])->first();
@@ -143,14 +142,14 @@ return response()->json([
 public function forgotPassword(Request $request)
 {
     $request->validate([
-        'email' => 'required|email',
+        'email' => 'required|email|max:255',
     ]);
 
     $status = Password::sendResetLink(
         $request->only('email')
     );
 
-    if ($status === Password::RESET_LINK_SENT) {
+    if ($status === Password::RESET_LINK_SENT || $status === Password::INVALID_USER) {
         return response()->json([
             'message' => 'Si el correo está registrado, recibirás un enlace de recuperación.',
         ]);
@@ -171,9 +170,9 @@ public function forgotPassword(Request $request)
 public function resetPassword(Request $request)
 {
 $datos = $request->validate([
-'email' => 'required|email',
-'token' => 'required|string',
-'password' => ['required', 'string', 'confirmed', new SecurePassword()],
+'email' => 'required|email|max:255',
+'token' => 'required|string|max:255',
+'password' => ['required', 'string', 'max:255', 'confirmed', new SecurePassword()],
 ]);
 
 $status = Password::reset(
@@ -186,6 +185,9 @@ $status = Password::reset(
         'locked_until' => null,
         'lock_level' => 0,
     ])->save();
+
+    // Password changes invalidate all previously issued API credentials.
+    $usuario->tokens()->delete();
 
 
     }

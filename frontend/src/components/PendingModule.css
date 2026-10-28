@@ -1,0 +1,53 @@
+.pending-module {
+    display: flex;
+    min-height: 390px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 40px 22px;
+    border: 1px dashed var(--accent-border);
+    border-radius: 18px;
+    background: var(--surface);
+    text-align: center;
+}
+
+.pending-illustration {
+    display: grid;
+    width: 62px;
+    height: 62px;
+    place-items: center;
+    margin-bottom: 18px;
+    border-radius: 20px;
+    background: var(--accent-soft);
+    color: var(--accent-text);
+    font-size: 27px;
+}
+
+.pending-label {
+    color: var(--accent-text);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.pending-module h1 {
+    margin: 9px 0 8px;
+    color: var(--accent-text);
+    font-size: 27px;
+    letter-spacing: -0.5px;
+}
+
+.pending-module p {
+    max-width: 430px;
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.pending-note {
+    margin-top: 17px;
+    color: var(--text-muted);
+    font-size: 11px;
+}
