@@ -12,6 +12,7 @@ box-sizing: border-box;
 
 .dashboard-card {
 width: 100%;
+margin-top: 20px;
 max-width: 480px;
 padding: 40px 32px;
 background: var(--surface);

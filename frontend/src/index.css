@@ -129,6 +129,7 @@ body {
     font-weight: 700;
     white-space: nowrap;
     cursor: pointer;
+    margin-left: 90px;
 }
 
 .theme-toggle:hover {
