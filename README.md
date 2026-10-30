@@ -34,7 +34,6 @@ Versiones observadas en el entorno de desarrollo durante la documentación: PHP 
 
 ## Estructura principal
 
-```text
 C:\StudyHub\
 ├── backend/
 │   ├── app/Http/Controllers/   # API, autenticación, materias, tareas y resumen
@@ -52,18 +51,15 @@ C:\StudyHub\
     ├── src/styles/              # Estilos de los módulos
     ├── src/utils/               # Fechas, estados y tema
     └── tests/                   # Pruebas de interfaz, calendario y calidad
-```
 
 ## Instalación y configuración del backend
 
 Abra PowerShell en la raíz del proyecto y prepare las dependencias y el archivo local de entorno:
 
-```powershell
 cd C:\StudyHub\backend
 composer install
 Copy-Item .env.example .env
 php artisan key:generate
-```
 
 `Copy-Item` es para una instalación nueva sin `.env`; si ya existe un archivo local, consérvelo y no lo sobrescriba. `APP_KEY` se genera localmente con Artisan. No comparta ni suba `.env`.
 
@@ -71,32 +67,24 @@ php artisan key:generate
 
 El `.env.example` actual declara `DB_CONNECTION=sqlite`. La configuración local observada para este proyecto utiliza MySQL. Para usar MySQL/MariaDB, cree previamente una base de datos vacía y configure en `backend/.env` los nombres de variables siguientes con los valores de su instalación:
 
-```dotenv
 DB_CONNECTION=mysql
 DB_HOST=
 DB_PORT=
 DB_DATABASE=
 DB_USERNAME=
 DB_PASSWORD=
-```
 
 No copie credenciales de otra máquina ni las incluya en Git. Tras configurar la conexión, aplique las migraciones:
 
-```powershell
 php artisan migrate
-```
 
 El comando crea las tablas definidas por las migraciones. Para revisar el estado sin ejecutar migraciones:
 
-```powershell
 php artisan migrate:status
-```
 
 El servidor local de Laravel se inicia desde `backend/`:
 
-```powershell
 php artisan serve --host=127.0.0.1 --port=8000
-```
 
 La API usa Sanctum con tokens Bearer para las rutas autenticadas.
 
@@ -104,19 +92,15 @@ La API usa Sanctum con tokens Bearer para las rutas autenticadas.
 
 En otra terminal:
 
-```powershell
 cd C:\StudyHub\frontend
 npm ci
 npm run dev
-```
 
 Vite sirve la aplicación en `http://localhost:5173` por defecto. El cliente API usa como valor predeterminado `http://127.0.0.1:8000/api`.
 
 Si el backend está en otra dirección, defina `VITE_API_URL` en `frontend/.env.local`, incluyendo el prefijo `/api`, por ejemplo:
 
-```dotenv
 VITE_API_URL=http://127.0.0.1:8000/api
-```
 
 La variable `VITE_API_URL` se lee desde el frontend y no figura en una plantilla frontend versionada. Vite incorpora variables `VITE_*` al bundle: nunca coloque secretos en ellas.
 
@@ -131,10 +115,8 @@ La variable `VITE_API_URL` se lee desde el frontend y no figura en una plantilla
 
 Las rutas se encuentran en `backend/routes/api.php`. El listado local puede consultarse con:
 
-```powershell
 cd C:\StudyHub\backend
 php artisan route:list --path=api
-```
 
 | Acceso | Rutas | Uso |
 |---|---|---|
@@ -168,9 +150,7 @@ La plantilla `.env.example` usa `MAIL_MAILER=log`, que no entrega mensajes a un 
 
 Use los valores de su proveedor solo en el `.env` local o en el gestor de secretos del entorno. La configuración disponible no demuestra por sí sola que un servidor SMTP esté accesible ni que el correo se entregue. Después de cambiar variables, si la aplicación usa caché de configuración, puede limpiarse con:
 
-```powershell
 php artisan config:clear
-```
 
 ## Recordatorios académicos
 
@@ -178,24 +158,18 @@ El comando `studyhub:generar-recordatorios` crea notificaciones internas para pr
 
 Para ejecutar el generador manualmente:
 
-```powershell
 cd C:\StudyHub\backend
 php artisan studyhub:generar-recordatorios
-```
 
 En desarrollo, mantenga el scheduler activo en una terminal:
 
-```powershell
 php artisan schedule:work
-```
 
 `php artisan schedule:list` permite comprobar la programación registrada, no que un proceso programador esté activo.
 
 En un servidor Linux/Unix, Laravel necesita que cron invoque `schedule:run` cada minuto:
 
-```cron
 * * * * * cd /ruta/a/StudyHub/backend && php artisan schedule:run >> /dev/null 2>&1
-```
 
 En Windows, configure el Programador de tareas para ejecutar `php artisan schedule:run` cada minuto con `backend` como directorio de trabajo. La ejecución del scheduler en un servidor no se considera configurada hasta que ese proceso externo esté instalado y verificado.
 
@@ -205,16 +179,12 @@ Más detalles de las ventanas de recordatorio y de la API de notificaciones est�
 
 Backend, desde `backend/`:
 
-```powershell
 php artisan test
-```
 
 Frontend, desde `frontend/`:
 
-```powershell
 npm test
 npm run lint
-```
 
 Las pruebas de backend usan SQLite en memoria, correo simulado y cola síncrona según `backend/phpunit.xml`; no usan la base local configurada para desarrollo ni prueban la entrega de SMTP.
 
@@ -222,9 +192,7 @@ Las pruebas de backend usan SQLite en memoria, correo simulado y cola síncrona 
 
 Desde `frontend/`:
 
-```powershell
 npm run build
-```
 
 Vite genera los archivos estáticos en `frontend/dist/`. `npm run preview` permite previsualizar localmente esa compilación. Configure `VITE_API_URL` para el origen real de la API antes de compilar el bundle destinado a un entorno. La compilación por sí sola no despliega la aplicación.
 
@@ -251,4 +219,3 @@ Vite genera los archivos estáticos en `frontend/dist/`. `npm run preview` permi
 | No aparecen recordatorios nuevos | Compruebe fecha y estado de las tareas, ejecute el comando manualmente y verifique que `schedule:work` o cron/Programador de tareas esté activo. El comando no envía mensajes externos. |
 | El navegador bloquea la API por CORS | Alinee el host frontend con los orígenes CORS permitidos del backend; evite abrir los permisos globalmente en producción. |
 | Error de dependencias en frontend | Verifique la versión de Node requerida por Vite/Vitest y vuelva a instalar desde `frontend/package-lock.json` con `npm ci`. |
-
