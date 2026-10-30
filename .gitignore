@@ -103,4 +103,4 @@ backend/app/Http/Controllers/*.backup.php
 # Archivo RAR accidental en componentes del frontend
 /frontend/src/components/New Archivo WinRAR.rar
 
-./Sprints
+/Sprints/
